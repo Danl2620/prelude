@@ -43,7 +43,10 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq )
+;; set up git
+(with-eval-after-load 'magit
+  (require 'forge))
+
 
 (push '("\\.frc$" . racket-mode) auto-mode-alist)
 
@@ -62,7 +65,6 @@
   (call-interactively 'compile))
 
 
-
 ;; setup c++ mode
 (c-add-style "unreal-style"
          '("stroustrup"
@@ -72,6 +74,8 @@
                    (brace-list-open . 0)
                    (substatement-open . 0)
                    (statement-case-open . +)
+				   (case-label . +)
+				   (statement-cont . 0)
                    ))))
 
 (defun my-c++-mode-hook ()

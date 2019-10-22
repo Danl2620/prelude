@@ -1,12 +1,15 @@
-;;; prelude-fsharp.el --- Emacs Prelude: F# programming support.
+;;; prelude-fsharp.el --- Emacs Prelude: F# mode
 ;;
-;; Author: Andre Boechat <andre.boechat@tutanota.com>
+;;
+;; URL: https://github.com/bbatsov/prelude
+;; Version: 1.0.0
+;; Keywords: convenience
 
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
 
-;; Basic setup for F# programming based on fsharp-mode and Eglot.
+;; Some basic configuration for F# programming.
 
 ;;; License:
 
@@ -26,22 +29,7 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-
-(require 'prelude-programming)
-(prelude-require-packages '(fsharp-mode eglot-fsharp))
-
-(with-eval-after-load 'fsharp-mode
-  (defun prelude-fsharp-mode-defaults ()
-    ;; A reasonable default path to the F# compiler and interpreter on
-    ;; Unix-like systems.
-    ;; https://github.com/fsharp/emacs-fsharp-mode#compiler-and-repl-paths
-    (setq inferior-fsharp-program "dotnet fsi --readline-")
-    (require 'eglot-sharp))
-
-  (setq prelude-fsharp-mode-hook 'prelude-fsharp-mode-defaults)
-
-  (add-hook 'fsharp-mode-hook (lambda ()
-                                (run-hooks 'prelude-sharp-mode-hook))))
+(prelude-require-package 'fsharp-mode)
 
 (provide 'prelude-fsharp)
 

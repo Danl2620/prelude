@@ -25,6 +25,7 @@
 
  mac-option-modifier 'meta
  mac-command-modifier 'super
+ mac-right-command-modifier 'super
 
  ;;mouse-wheel-scroll-amount 1
  ;;mouse-wheel-progressive-speed t
@@ -49,6 +50,7 @@
 
 
 (push '("\\.frc$" . racket-mode) auto-mode-alist)
+(push '("\\.rkt$" . racket-mode) auto-mode-alist)
 
 (defun ws-build ()
   (interactive)
@@ -73,7 +75,7 @@
            (c-offsets-alist . ((inline-open . 0)    ; custom indentation rules
                    (brace-list-open . 0)
                    (substatement-open . 0)
-                   (statement-case-open . +)
+                   (statement-case-open . 0)
 				   (case-label . +)
 				   (statement-cont . 0)
                    ))))

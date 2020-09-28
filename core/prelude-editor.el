@@ -224,6 +224,7 @@
 (require 'projectile)
 (setq projectile-cache-file (expand-file-name  "projectile.cache" prelude-savefile-dir))
 (projectile-mode t)
+(setq projectile-require-project-root nil)
 
 ;; avy allows us to effectively navigate to visible things
 (require 'avy)

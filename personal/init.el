@@ -32,7 +32,8 @@
  next-line-add-newlines nil
  ;;mouse-yank-at-point t
  auto-save-default nil
- make-backup-files nil)
+ make-backup-files nil
+ )
 
 
 (delete-selection-mode 1)
@@ -84,6 +85,8 @@
   (c-set-style "unreal-style")
   (auto-fill-mode)
   (c-toggle-auto-hungry-state 1))
+
+
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 (add-hook 'c-mode-hook 'my-c++-mode-hook)

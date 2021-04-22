@@ -123,5 +123,34 @@
  :run "./ws open"
  )
 
+(setq tags-table-list
+      '("/Users/danl/proj/ws/tdp1/.tags/tdp.tags"
+        "/Users/danl/proj/ws/tdp1/.tags/plugins.tags"
+        "/Users/danl/proj/ws/tdp1/.tags/thirdparty.tags"
+        ))
+
+(defun run-tdp1 ()
+  (interactive)
+  (realgud--lldb
+   ;;"./ws.ps1 open -mode game -shard local -username test01 -launchdebugger -pausedebug"
+   "./ws.ps1 open -mode game -shard local -username test01 -launchdebugger -pausedebug"
+   nil)
+  )
+
+;; (defun run-tdp1 ()
+;;   (interactive)
+;;   (let ((buf (get-buffer "*tdp1-log*")))
+;;     (when buf
+;;       (when (get-buffer-window buf)
+;;         (select-window (get-buffer-window buf)))
+
+;;       (switch-to-buffer buf)
+;;       )
+
+;;     (goto-char (point-max))
+;;     (call-interactively )
+
+;;     ))
+
 ;; theme!
-(load-theme 'solarized-dark t)
+(load-theme 'wombat t)

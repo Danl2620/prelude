@@ -1,4 +1,4 @@
-;;; prelude-racket.el --- Emacs Prelude: Racket programming support.
+;;; prelude-lua.el --- Emacs Prelude: Lua programming configuration.
 ;;
 ;; Copyright © 2011-2021 Bozhidar Batsov
 ;;
@@ -9,7 +9,7 @@
 
 ;;; Commentary:
 
-;; Basic configuration for Racket programming.
+;; Basic configuration for Lua programming.
 
 ;;; License:
 
@@ -30,23 +30,26 @@
 
 ;;; Code:
 
-(prelude-require-packages '(racket-mode))
 
-(require 'prelude-lisp)
+(require 'prelude-programming)
+(prelude-require-packages '(lua-mode))
 
-(with-eval-after-load 'racket-mode
-  (define-key racket-mode-map (kbd "M-RET") 'racket-run)
-  (define-key racket-mode-map (kbd "M-.") 'racket-repl-visit-definition)
+(with-eval-after-load 'lua-mode
+  (setq lua-indent-level 2)
+  (setq lua-indent-nested-block-content-align nil)
+  (setq lua-indent-close-paren-align nil)
+  (setq lua-indent-string-contents t)
 
-  ;; Enable the common Lisp coding hook
-  (add-hook 'racket-mode-hook (lambda () (run-hooks 'prelude-lisp-coding-hook)))
+  (define-key lua-mode-map (kbd "C-c C-b") 'lua-send-buffer)
+  (define-key lua-mode-map (kbd "C-c C-l") 'lua-send-current-line)
+  (define-key lua-mode-map (kbd "C-c C-f") 'lua-send-defun)
+  (define-key lua-mode-map (kbd "C-c C-r") 'lua-send-region)
+  (define-key lua-mode-map (kbd "C-c C-z") 'lua-show-process-buffer))
 
-  (add-hook 'racket-mode-hook #'racket-unicode-input-method-enable)
-  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-mode))
+(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
-(add-to-list 'auto-mode-alist '("\\.rkt?\\'" . racket-mode))
-(add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
+(provide 'prelude-lua)
 
-(provide 'prelude-racket)
-
-;;; prelude-racket ends here
+;;; prelude-lua ends here

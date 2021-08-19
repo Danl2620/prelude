@@ -85,18 +85,18 @@
 ;; (require 'prelude-python)
 (require 'prelude-racket)
 ;; (require 'prelude-ruby)
-(require 'prelude-rust)
+;;(require 'prelude-rust)
 ;; (require 'prelude-scala)
 ;; (require 'prelude-scheme)
 (require 'prelude-shell)
 ;; (require 'prelude-scss)
 ;; (require 'prelude-ts)
-(require 'prelude-web) ;; Emacs mode for web templates
+;;(require 'prelude-web) ;; Emacs mode for web templates
 (require 'prelude-xml)
 (require 'prelude-yaml)
 
 ;;; Misc
-(require 'prelude-erc) ;; A popular Emacs IRC client (useful if you're still into Freenode)
+;;(require 'prelude-erc) ;; A popular Emacs IRC client (useful if you're still into Freenode)
 
 (provide 'prelude-modules)
 ;;; prelude-modules.el ends here

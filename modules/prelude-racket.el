@@ -1,15 +1,15 @@
-;;; prelude-racket.el --- Emacs Prelude: Racket programming support.
+;;; prelude-raket.el --- Emacs Prelude: Some defaults for Scheme.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
 ;;
-;; Author: Xiongfei Shi <xiongfei.shi@icloud.com>
 ;; URL: https://github.com/bbatsov/prelude
+;; Version: 1.0.0
+;; Keywords: convenience
 
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
 
-;; Basic configuration for Racket programming.
+;; Some basic configuration for Racket programming.
 
 ;;; License:
 
@@ -29,24 +29,8 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-
-(prelude-require-packages '(racket-mode))
-
-(require 'prelude-lisp)
-
-(with-eval-after-load 'racket-mode
-  (define-key racket-mode-map (kbd "M-RET") 'racket-run)
-  (define-key racket-mode-map (kbd "M-.") 'racket-repl-visit-definition)
-
-  ;; Enable the common Lisp coding hook
-  (add-hook 'racket-mode-hook (lambda () (run-hooks 'prelude-lisp-coding-hook)))
-
-  (add-hook 'racket-mode-hook #'racket-unicode-input-method-enable)
-  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
-
-(add-to-list 'auto-mode-alist '("\\.rkt?\\'" . racket-mode))
-(add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
+(prelude-require-package 'racket-mode)
 
 (provide 'prelude-racket)
 
-;;; prelude-racket ends here
+;;; prelude-racket.el ends here

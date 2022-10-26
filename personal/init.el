@@ -119,8 +119,8 @@
  'tdp
  ()
  :compilation-dir "wslib"
- :compile "./ws build"
- :run "./ws open"
+ :compile "pwsh ./ws build -Configuration DebugGame"
+ :run "pwsh ./ws open -Configuration DebugGame"
  )
 
 (setq tags-table-list
@@ -154,3 +154,8 @@
 
 ;; theme!
 (load-theme 'wombat t)
+
+;; start up the emacs server so we can use ``emacsclient``
+(require 'server)
+(when (not (server-running-p))
+  (server-start))

@@ -1,5 +1,6 @@
 ;;; prelude-raket.el --- Emacs Prelude: Some defaults for Scheme.
 ;;
+;; Copyright © 2011-2023 Bozhidar Batsov
 ;;
 ;; URL: https://github.com/bbatsov/prelude
 ;; Version: 1.0.0

@@ -69,6 +69,18 @@
 
 
 ;; setup c++ mode
+(c-add-style "rs-style"
+             '("stroustrup"
+               (c-basic-offset . 4)         ; indent by four spaces
+               (c-offsets-alist . ((inline-open . 0)    ; custom indentation rules
+                                   (brace-list-open . 0)
+                                   (substatement-open . 0)
+                                   (statement-case-open . 0)
+				                   (case-label . +)
+				                   (statement-cont . 0)
+                                   (innamespace . [0])
+                                   ))))
+
 (c-add-style "unreal-style"
          '("stroustrup"
            (indent-tabs-mode . t)           ; use tabs to indent because Unreal
@@ -82,14 +94,25 @@
                    ))))
 
 (defun my-c++-mode-hook ()
-  (c-set-style "unreal-style")
+  (c-set-style "rs-style")
   (auto-fill-mode)
   (c-toggle-auto-hungry-state 1))
 
-
-
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 (add-hook 'c-mode-hook 'my-c++-mode-hook)
+
+;; set up Nickel mode
+(require 'nickel-mode)
+(require 'lsp-mode)
+
+(add-to-list 'lsp-language-id-configuration '(nickel-mode . "nickel"))
+(lsp-register-client (make-lsp-client
+                      :new-connection (lsp-stdio-connection "nls")
+			          :activation-fn (lsp-activate-on "nickel")
+                      :server-id 'nls
+                      :major-modes 'nickel-mode))
+(add-hook 'nickel-mode-hook 'lsp-deferred)
+
 
 ;; keys
 (global-set-key [f1] 'help)
@@ -109,33 +132,19 @@
 (global-set-key "\C-j" 'goto-line)
 ;; (global-set-key [s-right] 'end-of-line)
 ;; (global-set-key [s-left] 'beginning-of-line)
-(global-set-key [s-left] 'backward-sexp)
-(global-set-key [s-right] 'forward-sexp)
+(global-set-key [M-left] 'backward-sexp)
+(global-set-key [M-right] 'forward-sexp)
 ;; (global-set-key [C-up] 'pager-row-up)
 ;; (global-set-key [C-down] 'pager-row-down)
 
-;; set up tdp project
+;; set up project
 (projectile-register-project-type
- 'tdp
- ()
- :compilation-dir "wslib"
- :compile "./ws build"
- :run "./ws open"
+ 'keystone
+ '("Keystone.code-workspace")
+ :project-file "Keystone.code-workspace"
+ :compile "bazel build //..."
  )
 
-(setq tags-table-list
-      '("/Users/danl/proj/ws/tdp1/.tags/tdp.tags"
-        "/Users/danl/proj/ws/tdp1/.tags/plugins.tags"
-        "/Users/danl/proj/ws/tdp1/.tags/thirdparty.tags"
-        ))
-
-(defun run-tdp1 ()
-  (interactive)
-  (realgud--lldb
-   ;;"./ws.ps1 open -mode game -shard local -username test01 -launchdebugger -pausedebug"
-   "./ws.ps1 open -mode game -shard local -username test01 -launchdebugger -pausedebug"
-   nil)
-  )
 
 ;; (defun run-tdp1 ()
 ;;   (interactive)
@@ -154,3 +163,9 @@
 
 ;; theme!
 (load-theme 'wombat t)
+
+(set-face-attribute 'default nil :height 180)
+
+
+(provide 'init)
+;;; init.el ends here
